@@ -1,18 +1,24 @@
 ﻿using AutoMapper;
 using CashFlow.Communication.Requests;
+using CashFlow.Communication.Response;
 using CashFlow.Domain.Entities;
 
 namespace CashFlow.Application.AutoMapper;
 
-public class AutoMapping :Profile
+public class AutoMapping : Profile
 {
-    public AutoMapping() { }
+    public  AutoMapping()
+    {
+        RequestToEntity();
+        EntityToResponse();
+    }
     private void RequestToEntity()
     {
         CreateMap<RequestRegisterExpenseJson, Expense>();
     }
     private void EntityToResponse()
     {
-        CreateMap<Expense, RequestRegisterExpenseJson>();
+        CreateMap<Expense, ResponseRegisterExpenseJson>();
+        CreateMap<Expense, ResponseShortExpenseJson>();
     }
 }
