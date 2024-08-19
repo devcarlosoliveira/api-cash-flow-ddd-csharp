@@ -1,6 +1,6 @@
-﻿using AutoMapper;
-using CashFlow.Domain.Entities;
-using CashFlow.Domain.Enums;
+﻿using CashFlow.Domain.Entities;
+using CashFlow.Domain.Extensions;
+using CashFlow.Domain.Reports;
 using CashFlow.Domain.Repositories.Expenses;
 using ClosedXML.Excel;
 
@@ -8,16 +8,11 @@ namespace CashFlow.Application.UseCases.Expenses.Reports.Excel
 {
     public class GenerateExpensesReportExcelUseCase : IGenerateExpensesReportExcelUseCase
     {
-        //TODO REFACTOR
-        private const string CURRENCY_SYMBOL = "R$";
-
         private readonly IExpensesReadOnlyRepository _repository;
-        private readonly IMapper _mapper;
 
-        public GenerateExpensesReportExcelUseCase(IExpensesReadOnlyRepository repository, IMapper mapper)
+        public GenerateExpensesReportExcelUseCase(IExpensesReadOnlyRepository repository)
         {
             _repository = repository;
-            _mapper = mapper;
         }
 
         public async Task<byte[]> Execute(DateOnly month)
@@ -50,17 +45,17 @@ namespace CashFlow.Application.UseCases.Expenses.Reports.Excel
 
         private void InsertBody(IXLWorksheet worksheet, List<Expense> expenses)
         {
-            
+
 
             var raw = 2;
             foreach (var expense in expenses)
             {
                 worksheet.Cell($"A{raw}").Value = expense.Title;
                 worksheet.Cell($"B{raw}").Value = expense.Date;
-                worksheet.Cell($"C{raw}").Value = ConvertPaymentType(expense.PaymentType);
-                
+                worksheet.Cell($"C{raw}").Value = expense.PaymentType.PaymentTypeToString();
+
                 worksheet.Cell($"D{raw}").Value = expense.Amount;
-                worksheet.Cell($"D{raw}").Style.NumberFormat.Format = $"-{CURRENCY_SYMBOL} #,###.00";
+                worksheet.Cell($"D{raw}").Style.NumberFormat.Format = $"-{ResourceReportGenerationMessages.CURRENCY_SYMBOL} #,###.00";
 
                 worksheet.Cell($"E{raw}").Value = expense.Description;
 
@@ -79,25 +74,11 @@ namespace CashFlow.Application.UseCases.Expenses.Reports.Excel
             worksheet.Cells("D1").Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
             worksheet.Cells("E1").Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Right);
 
-            worksheet.Cell("A1").Value = ResourceReportGenerationMessage.TITLE;
-            worksheet.Cell("B1").Value = ResourceReportGenerationMessage.DATE;
-            worksheet.Cell("C1").Value = ResourceReportGenerationMessage.PAYMENT_TYPE;
-            worksheet.Cell("D1").Value = ResourceReportGenerationMessage.AMOUNT;
-            worksheet.Cell("E1").Value = ResourceReportGenerationMessage.DESCRIPTION;
-        }
-
-        private string ConvertPaymentType(PaymentType paymentType)
-        {
-            //TODO REFACTOR
-            return paymentType switch
-            {
-                PaymentType.Cash => "Dinheiro",
-                PaymentType.CreditCard => "Cartão de Crédito",
-                PaymentType.DebitCard => "Cartão de Débito",
-                PaymentType.EletronicTransfer => "Transferência Bancária",
-                PaymentType.None => "Não Informado",
-                _ => string.Empty
-            };
+            worksheet.Cell("A1").Value = ResourceReportGenerationMessages.TITLE;
+            worksheet.Cell("B1").Value = ResourceReportGenerationMessages.DATE;
+            worksheet.Cell("C1").Value = ResourceReportGenerationMessages.PAYMENT_TYPE;
+            worksheet.Cell("D1").Value = ResourceReportGenerationMessages.AMOUNT;
+            worksheet.Cell("E1").Value = ResourceReportGenerationMessages.DESCRIPTION;
         }
     }
 }

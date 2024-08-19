@@ -118,18 +118,42 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AMOUNT" xml:space="preserve">
-    <value>Amount</value>
+    <value>Valor</value>
   </data>
   <data name="DATE" xml:space="preserve">
-    <value>Date</value>
+    <value>Data</value>
   </data>
   <data name="DESCRIPTION" xml:space="preserve">
-    <value>Description</value>
+    <value>Descrição</value>
   </data>
   <data name="PAYMENT_TYPE" xml:space="preserve">
-    <value>Payment Type</value>
+    <value>Tipo de Pagamento</value>
   </data>
   <data name="TITLE" xml:space="preserve">
-    <value>Title</value>
+    <value>Título</value>
+  </data>
+  <data name="NONE" xml:space="preserve">
+    <value>Não Informado</value>
+  </data>
+  <data name="EXPENSES_FOR" xml:space="preserve">
+    <value>Despesas para</value>
+  </data>
+  <data name="ELETRONIC_TRANSFER" xml:space="preserve">
+    <value>Transferência eletrônica</value>
+  </data>
+  <data name="DEBIT_CARD" xml:space="preserve">
+    <value>Cartão de débito</value>
+  </data>
+  <data name="CREDIT_CARD" xml:space="preserve">
+    <value>Cartão de crédito</value>
+  </data>
+  <data name="CASH" xml:space="preserve">
+    <value>Dinheiro</value>
+  </data>
+  <data name="CURRENCY_SYMBOL" xml:space="preserve">
+    <value>R$</value>
+  </data>
+  <data name="TOTAL_SPENT_IN" xml:space="preserve">
+    <value>Total gasto em  {0}</value>
   </data>
 </root>
