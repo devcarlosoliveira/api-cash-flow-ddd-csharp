@@ -36,20 +36,9 @@ public class ReportController : ControllerBase
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> GetPdf(
         [FromServices] IGenerateExpensesReportPdfUseCase useCase,
-        [FromQuery] string month)
+        [FromQuery] DateOnly month)
     {
-        if (string.IsNullOrWhiteSpace(month))
-        {
-            return BadRequest("Invalid month parameter.");
-        }
-
-        // Validação do parâmetro month
-        if (string.IsNullOrWhiteSpace(month) || !DateOnly.TryParseExact(month, "yyyy-MM", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateOnly dateOnly))
-        {
-            return BadRequest("Invalid month parameter. Please use the format 'yyyy-MM'.");
-        }
-
-        byte[] file = await useCase.Execute(dateOnly);
+        byte[] file = await useCase.Execute(month);
 
         if (file.Length > 0)
         {

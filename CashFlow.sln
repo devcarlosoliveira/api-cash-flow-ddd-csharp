@@ -23,6 +23,18 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Validators.Test", "tests\Va
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonTestUtilities", "tests\CommonTestUtilities\CommonTestUtilities.csproj", "{27A95C98-C08F-41D3-A8E9-FE149238DBD9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Itens de Solução", "Itens de Solução", "{7068DA3D-73CA-4527-B4FF-BB0E6993E8EA}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		LICENSE.txt = LICENSE.txt
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{9C3E7E36-94E9-477C-B0E9-B8B76BE8D2FA}"
+	ProjectSection(SolutionItems) = preProject
+		images\heroimage.png = images\heroimage.png
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -74,6 +86,7 @@ Global
 		{4FEE28C5-BC80-4452-AD04-2ADF75F4FBB3} = {7C557156-6704-4BBE-B02C-1F6F628CF049}
 		{A6CBB62E-A4D3-474B-B349-BAE116EFD889} = {5D96E793-D828-472C-8062-44D0F7677279}
 		{27A95C98-C08F-41D3-A8E9-FE149238DBD9} = {5D96E793-D828-472C-8062-44D0F7677279}
+		{9C3E7E36-94E9-477C-B0E9-B8B76BE8D2FA} = {7068DA3D-73CA-4527-B4FF-BB0E6993E8EA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {81522158-4BA5-44C9-9CB0-2C1A6D8A0135}
